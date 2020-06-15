@@ -35,17 +35,21 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
+
     <div class="container">
       <!-- Timeblocks go here -->
       <div class="row">
-        <div class = "col-2">9 AM</div>
-        <div class="col-8"></div>
+        <div class = "col-2">
+          <button type="button" data-toggle="collapse" data-target="#test">Test</button>
+        </div>
+        <div class="col-8">
+        </div>
         <div class="col-2"></div>
       </div>
 
-      <div class="row">
-        <div class = "col-2">10 AM</div>
-        <div class="col-8"></div>
+      <div id="test" class="row collapse">
+        <div class ="col-2">10 AM</div>
+        <div class="col-8">test</div>
         <div class="col-2"></div>
       </div>
 
@@ -94,5 +98,9 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="../Assets/script.js" ></script>
   </body>
 </html>

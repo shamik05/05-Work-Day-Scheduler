@@ -24,11 +24,21 @@ $(document).ready(function () {
   });
   
   $("button").click(function(){
-    // console.log(this.id);
-    let x = $(this).prev().val();
-    // console.log(x);
-    localStorage.setItem(this.id, JSON.stringify($(this).prev().val()));
-  })
+    console.log(this.id);
+    let timeText = $(this).prev().val();
+    if(timeText === ""){
+      alert($(this).prev().prev().text()+" Timeblock has no activities to save");
+      return;
+    }
+    let saveBtnEl = this.id;
+    // console.log($(this).prev().prev().text());
+    
+    timeSaveText(saveBtnEl, timeText);
+    alert($(this).prev().prev().text()+" Timeblock saved successfully!")
+ })
 
+  function timeSaveText(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
 });

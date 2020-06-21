@@ -24,11 +24,11 @@ $(document).ready(function () {
   });
   
   $("button").click(function(){
-    console.log(this.id);
+    // console.log(this.id);
     let x = $(this).prev().val();
-    console.log(x);
-    localStorage.setItem(this.id, $(this).prev().val());
+    // console.log(x);
+    localStorage.setItem(this.id, JSON.stringify($(this).prev().val()));
   })
 
-  
+
 });

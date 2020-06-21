@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss A"));
+  setInterval(function(){
+    $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss A"));
+  },1000);
   
   var workTimes = [moment().hours(9).minutes(0).seconds(0)];
   for(let i=0; i<=22; i++){
@@ -38,8 +40,8 @@ $(document).ready(function(){
     //   alert($(this).prev().prev().text()+" Timeblock has no activities to save");
     //   return;
     // }
-    let saveBtnEl = this.id;
-    timeSaveText(saveBtnEl, timeText);
+    // let saveBtnEl = this.id;
+    timeSaveText(this.id, timeText);
     alert($(this).prev().prev().text()+" Timeblock saved successfully!")
   });
 

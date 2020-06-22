@@ -12,11 +12,9 @@ $(document).ready(function(){
   $("#endTime").append(timeList);
   
   function renderTimeslots(){
-    // duration = 9;
-    console.log(timeGetText("duration"));
-    // console.log(timeGetText(start));
     $(".container-fluid").empty();
-    var workTimes = [moment().hours(9).minutes(0).seconds(0)];
+    // var workTimes = [moment().hours(9).minutes(0).seconds(0)];
+    var workTimes = [moment(timeGetText("start"),"hA")];
     for(let i=0; i<=timeGetText("duration"); i++){
       var timeClone = workTimes[i].clone();
       timeClone.add(1, 'hours');
@@ -57,7 +55,6 @@ $(document).ready(function(){
 	  {
 		end.add(1, "days");       // handle spanning days endTime
     }
-    // renderTimeslots(Math.abs(start.diff(end,"hours")));
     timeSaveText("start",$("#startTime").val()+$("#startAMPM").val())
     timeSaveText("duration",Math.abs(start.diff(end,"hours")))
     renderTimeslots();

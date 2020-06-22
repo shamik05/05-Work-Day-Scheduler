@@ -10,10 +10,13 @@ $(document).ready(function(){
   
   $("#startTime").append(timeList);
   $("#endTime").append(timeList);
-  $("#startTime").val(timeGetText("start").slice(0,-2))
-  $("#startAMPM").val(timeGetText("start").slice(-2))
-  $("#endTime").val(timeGetText("end").slice(0,-2))
-  $("#endAMPM").val(timeGetText("end").slice(-2))
+  
+  if(timeGetText("start")!=null){
+    $("#startTime").val(timeGetText("start").slice(0,-2))
+    $("#startAMPM").val(timeGetText("start").slice(-2))
+    $("#endTime").val(timeGetText("end").slice(0,-2))
+    $("#endAMPM").val(timeGetText("end").slice(-2))
+  }
   
   function renderTimeslots(){
     $(".container-fluid").empty();
@@ -49,7 +52,9 @@ $(document).ready(function(){
     });
   }
 
-  renderTimeslots();
+  if(timeGetText("start")!=null){
+    renderTimeslots();
+  }
 
   $(".timeSetup").click(function(){
     var start = moment($("#startTime").val()+$("#startAMPM").val(),"hA");
@@ -81,6 +86,15 @@ $(document).ready(function(){
     timeSaveText(this.id, timeText);
     alert($(this).prev().prev().text()+" Timeblock saved successfully!")
   });
+
+  $(".reset").click(function(){
+    if(timeGetText("start")){
+      if(confirm("Are you sure you wish to reset? Current schedule be lost!")){;
+      localStorage.clear(); 
+      $(".container-fluid").empty();
+      }    
+    }
+  })
 
   function timeSaveText(key, value){
     localStorage.setItem(key, JSON.stringify(value));

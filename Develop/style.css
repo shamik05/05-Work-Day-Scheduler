@@ -83,3 +83,11 @@ body {
     padding-right: 15%;
     padding-bottom: 40px;
   }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  .linethrough {
+    text-decoration: line-through;
+  }

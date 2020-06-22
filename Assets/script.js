@@ -11,11 +11,13 @@ $(document).ready(function(){
   $("#startTime").append(timeList);
   $("#endTime").append(timeList);
   
-  function renderTimeslots(duration){
-    console.log(duration)
+  function renderTimeslots(){
+    // duration = 9;
+    console.log(timeGetText("duration"));
+    // console.log(timeGetText(start));
     $(".container-fluid").empty();
     var workTimes = [moment().hours(9).minutes(0).seconds(0)];
-    for(let i=0; i<=duration; i++){
+    for(let i=0; i<=timeGetText("duration"); i++){
       var timeClone = workTimes[i].clone();
       timeClone.add(1, 'hours');
       workTimes[i+1] = timeClone;
@@ -28,7 +30,7 @@ $(document).ready(function(){
       var timeCol1 = $("<textarea class='col-8 description' placeholder='Type your activities for the hour...'>");
       var timeCol2 = $("<button class='col-2 saveBtn' style='font-size: 2.5rem'>");
       $(timeCol2).attr("id", "save"+workTimes[index]._d.getHours());
-      $(timeCol1).val(timeGetText(workTimes[index]._d.getHours()));
+      $(timeCol1).val(timeGetText("save"+workTimes[index]._d.getHours()));
       var saveFA = $("<i class='far fa-save'>");
       var timeCur = moment();
       if(moment(workTimes[index]).isBefore(timeCur) && workTimes[index]._d.getHours()!=timeCur._d.getHours()){
@@ -44,18 +46,21 @@ $(document).ready(function(){
     });
   }
 
-  // renderTimeslots();
+  renderTimeslots();
 
   $(".timeSetup").click(function(){
     var start = moment($("#startTime").val()+$("#startAMPM").val(),"hA");
     var end = moment($("#endTime").val()+$("#endAMPM").val(),"hA");
     
-    // Copied 
+    // Copied from https://jsfiddle.net/rfossella/66wjtnvk/1/
     if ( (start.hour() >=12 && end.hour() <=12 ) || end.isBefore(start) )
 	  {
 		end.add(1, "days");       // handle spanning days endTime
     }
-    renderTimeslots(Math.abs(start.diff(end,"hours")));
+    // renderTimeslots(Math.abs(start.diff(end,"hours")));
+    timeSaveText("start",$("#startTime").val()+$("#startAMPM").val())
+    timeSaveText("duration",Math.abs(start.diff(end,"hours")))
+    renderTimeslots();
   })
 
   $(".col-2").click(function(){
@@ -75,11 +80,10 @@ $(document).ready(function(){
   };
 
   function timeGetText(key){
-    value=JSON.parse(localStorage.getItem("save"+key));
+    value=JSON.parse(localStorage.getItem(key));
       if(value!==null){
-      return value;
+      // console.log(value);
+        return value;
     };
   }
-
-  
 })

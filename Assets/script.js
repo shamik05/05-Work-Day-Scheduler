@@ -32,15 +32,16 @@ $(document).ready(function(){
       var saveFA = $("<i class='far fa-save'>");
       var timeCur = moment();
       if(moment(workTimes[index]).isBefore(timeCur) && workTimes[index]._d.getHours()!=timeCur._d.getHours()){
-        $(timeCol1).addClass("past");
+        $(timeCol1).addClass("past linethrough");
       }else if(moment(workTimes[index]).isAfter(timeCur)){
-        $(timeCol1.addClass("future"));
+        $(timeCol1.addClass("future font-italic"));
       } else {
-        $(timeCol1.addClass("present"));
+        $(timeCol1.addClass("present underline"));
       }
       $(timeCol2).append(saveFA);
       $(timeRow).append(timeCol0, timeCol1, timeCol2);
       $(".container-fluid").append(timeRow);
+
     });
   }
 

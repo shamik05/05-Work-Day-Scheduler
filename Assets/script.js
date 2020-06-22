@@ -3,6 +3,13 @@ $(document).ready(function(){
     $("#currentDay").text(moment().format("[Today is] MMMM D, h:mm:ss A"));
   },1000);
 
+  setInterval(function(){
+    if(timeGetText("start")!=null){
+      renderTimeslots();
+      console.log("ran");
+    }
+  },60000);
+
   var timeList = [];
   for(let i=1; i<=12; i++){
     timeList.push("<option value="+i+">"+i+"</option>")

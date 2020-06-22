@@ -39,11 +39,11 @@ $(document).ready(function(){
       var saveFA = $("<i class='far fa-save'>");
       var timeCur = moment();
       if(moment(workTimes[index]).isBefore(timeCur) && workTimes[index]._d.getHours()!=timeCur._d.getHours()){
-        $(timeCol1).addClass("past linethrough");
+        $(timeCol1).addClass("past");
       }else if(moment(workTimes[index]).isAfter(timeCur)){
-        $(timeCol1.addClass("future font-italic"));
+        $(timeCol1.addClass("future"));
       } else {
-        $(timeCol1.addClass("present underline"));
+        $(timeCol1.addClass("present"));
       }
       $(timeCol2).append(saveFA);
       $(timeRow).append(timeCol0, timeCol1, timeCol2);

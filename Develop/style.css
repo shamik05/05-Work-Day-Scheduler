@@ -84,6 +84,10 @@ body {
     padding-bottom: 40px;
   }
 
+  textarea::placeholder {
+    font-style: italic;
+  }
+  
   .underline {
     text-decoration: underline;
   }

@@ -10,6 +10,10 @@ $(document).ready(function(){
   
   $("#startTime").append(timeList);
   $("#endTime").append(timeList);
+  $("#startTime").val(timeGetText("start").slice(0,-2))
+  $("#startAMPM").val(timeGetText("start").slice(-2))
+  $("#endTime").val(timeGetText("end").slice(0,-2))
+  $("#endAMPM").val(timeGetText("end").slice(-2))
   
   function renderTimeslots(){
     $(".container-fluid").empty();
@@ -50,7 +54,9 @@ $(document).ready(function(){
   $(".timeSetup").click(function(){
     var start = moment($("#startTime").val()+$("#startAMPM").val(),"hA");
     var end = moment($("#endTime").val()+$("#endAMPM").val(),"hA");
-    
+    if(start.isSame(end)){
+      alert("The Start and End times are the same. Please enter a different time.")
+    }else{
     // Copied from https://github.com/moment/moment/issues/1199#issuecomment-258647695
     if ( (start.hour() >=12 && end.hour() <=12 ) || end.isBefore(start) )
 	  {
@@ -58,7 +64,10 @@ $(document).ready(function(){
     }
     timeSaveText("start",$("#startTime").val()+$("#startAMPM").val())
     timeSaveText("duration",Math.abs(start.diff(end,"hours")))
+    timeSaveText("end",$("#endTime").val()+$("#endAMPM").val())
     renderTimeslots();
+    $("#timeModal").modal("hide");
+    }
   })
 
   $(".col-2").click(function(){

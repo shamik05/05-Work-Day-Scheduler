@@ -50,7 +50,7 @@ $(document).ready(function(){
     var start = moment($("#startTime").val()+$("#startAMPM").val(),"hA");
     var end = moment($("#endTime").val()+$("#endAMPM").val(),"hA");
     
-    // Copied from https://jsfiddle.net/rfossella/66wjtnvk/1/
+    // Copied from https://github.com/moment/moment/issues/1199#issuecomment-258647695
     if ( (start.hour() >=12 && end.hour() <=12 ) || end.isBefore(start) )
 	  {
 		end.add(1, "days");       // handle spanning days endTime

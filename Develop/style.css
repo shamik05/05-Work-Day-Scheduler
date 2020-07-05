@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1;
   }
   
@@ -39,28 +39,28 @@ body {
   }
   
   .hour {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
     color: #000000;
     border-top: 1px dashed #000000;
     height: 80px;
-    padding-top: 25px;
-    /* text-align: right; */
-    font-size: 1.5rem;
+    padding: 0;
+    text-align: right;
+    justify-content: center;
+    font-weight: 600;
   }
   
   .past {
     background-color: #d3d3d3;
-    /* color: white; */
   }
   
   .present {
     background-color: #ff6961;
-    /* color: white; */
   }
   
   .future {
     background-color: #77dd77;
-    /* color: white; */
   }
   
   .saveBtn {
@@ -69,6 +69,7 @@ body {
     border-bottom-right-radius: 15px;
     background-color: #06AED5;
     color: white;
+    font-weight: 600;
   }
   
   .saveBtn:hover {

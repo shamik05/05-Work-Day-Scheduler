@@ -37,7 +37,7 @@ $(document).ready(function(){
     // Create an array of moment objects starting with the given start time with increments of 1 hour
     var workTimes = [moment(timeGetText("start"),"hA")];
     // Duration is calculate from start and end time
-    for(let i=0; i<=timeGetText("duration"); i++){
+    for(let i=0; i<timeGetText("duration"); i++){
       // moment is a mutable object that needs to be cloned otherwise it will alter the original's value during manipulation
       var timeClone = workTimes[i].clone();
       timeClone.add(1, 'hours');
@@ -46,21 +46,24 @@ $(document).ready(function(){
 
     // Create the gui based on the Moment array above
     $.each(workTimes, function (index) {
+
       // Row
       var timeRow = $("<div class='row time-block'>");
       // Column 1 showing the time slot
-      var timeCol0 = $("<div class='col hour'>");
+      var timeCol0 = $("<div class='col-sm hour'>");
       // Display the moment object itself with some formatting
       $(timeCol0).text(workTimes[index].format("ddd, hA"));
       // Column 2 showing the text area
-      var timeCol1 = $("<textarea class='col-8 description' placeholder='Type your activities for the hour...'>");
+      var timeCol1 = $("<textarea class='col-sm-8 description' placeholder='Type your activities for the hour...'>");
       // Column 3 showing the save button
-      var timeCol2 = $("<button class='col-2 saveBtn' style='font-size: 2.5rem'>");
+      var timeCol2 = $("<button class='col-sm-2 saveBtn'>SAVE <i class='fas fa-save'></i></button>");
+
       // Assigning every save button an id so we can work with it later
-      $(timeCol2).attr("id", "save"+workTimes[index]._d.getHours());
+      $(timeCol2).attr("id","save"+workTimes[index]._d.getHours());
+      // console.log($(timeCol2).textContent)
+
       // Grabbing any saved text for that timeslot by specifying under which savebutton it was saved as
       $(timeCol1).val(timeGetText("save"+workTimes[index]._d.getHours()));
-      var saveFA = $("<i class='far fa-save'>");
 
       // Formatting the colors based on past, current, and future
       // Create a Moment object based on current time of calculation
@@ -77,7 +80,6 @@ $(document).ready(function(){
       }
 
       // Append the created divs above into their own Row and the Row to the container
-      $(timeCol2).append(saveFA);
       $(timeRow).append(timeCol0, timeCol1, timeCol2);
       $(".container-fluid").append(timeRow);
 
@@ -117,16 +119,11 @@ $(document).ready(function(){
   })
 
   // Eventlistener on the save button
-  $(".col-2").click(function(){
-    // console.log(this.id);
+  // $(".col-2").click(function(){
+  $(".container-fluid").on("click",".saveBtn",function(){
+    console.log($(this))
     // Grab the text from the same row as the save button
     let timeText = $(this).prev().val();
-    // if(timeText === ""){
-    //   alert($(this).prev().prev().text()+" Timeblock has no activities to save");
-    //   return;
-    // }
-    // let saveBtnEl = this.id;
-    // Save it in localstorage with a key same as save button element id
     timeSaveText(this.id, timeText);
     alert($(this).prev().prev().text()+" Timeblock saved successfully!")
   });

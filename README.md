@@ -11,16 +11,10 @@ This is a simple day planner app to save tasks by timeslots. By default, it has 
 * [Contributing](#Contributing)
 * [Questions](#Questions)
 ## Installation
-Download or clone the repo to a working directory and extract its contents. Use a **C**ommand **L**ine **I**nterface to install necessary dependencies by running the following command:
-```
-npm i
-```
+Download or clone the repo to a working directory and extract its contents.
+
 ## Usage 
-Type the following in any CLI to run the app. 
-```
-npm start
-```
-Each module's functions have also been demo-ed below.
+Open the index.html in any browser
 
 ### Setup
 
